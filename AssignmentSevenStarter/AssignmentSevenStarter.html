@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec2 vTexCoord;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+varying vec2 fTexCoord;
+
+
+void main() 
+{
+    fTexCoord = vTexCoord;
+
+    gl_Position = projectionMatrix*modelViewMatrix*vPosition;
+
+    // gl_Position = vPosition;
+    // gl_Position.z = -gl_Position.z;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+varying  vec2 fTexCoord;
+uniform sampler2D texture;
+
+void main()
+{
+    //gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    gl_FragColor = texture2D( texture, fTexCoord );
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="AssignmentSevenStarter.js"></script>
+
+<body>
+
+<!-- menu -->
+<select id="controls" size="4">
+	<option value="0">point sampling</option>
+	<option value="1">mip mapping</option>	
+</select>
+
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<img id = "texImage" src = "museumTextures.jpg" hidden></img>
+
+</body>
+</html>
