@@ -192,9 +192,9 @@ render = function(){
     gl.uniformMatrix4fv( projectionMatrixLoc, false, flatten(projectionMatrix) );
 
     //draw triangles
-    gl.drawArrays( gl.TRIANGLE_FAN, 0, 3);
-    gl.drawArrays( gl.TRIANGLE_FAN, 4, 7);
-    gl.drawArrays( gl.TRIANGLE_FAN, 8, 11);
+    gl.drawArrays( gl.TRIANGLE_FAN, 0, pointsArray.length);
+    gl.drawArrays( gl.TRIANGLE_FAN, 4, pointsArray.length);
+    gl.drawArrays( gl.TRIANGLE_FAN, 8, pointsArray.length);
  
     requestAnimFrame(render);
 }
